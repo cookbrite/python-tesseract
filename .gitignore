@@ -1,0 +1,52 @@
+### Operating systems
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+### Editors/IDEs
+.idea/
+*~
+\#*\#
+.\#*
+
+### C/C++, libraries, executables
+*.o
+*.dylib
+*.dll
+*.lib
+*.a
+*.la
+*.so
+*.so.*
+*.exe
+
+### Python
+*.py[cod]
+lib/
+*.egg-info/
+*.egg
+
+### Project-specific ignores
+src/*.h
+src/tesseract.py
+src/tesseract_wrap.cpp
+src/tesseract.i
+src/build/
+src/dist/
