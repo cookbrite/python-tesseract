@@ -176,8 +176,11 @@ def idefine(fp,name):
 
 class CustomBuild(build):
     def run(self):
-        self.run_command('build_ext')  # must build twice  <-- swig bug
-        build.run(self)
+        # run() performs sub_commands in order. Move build_py to the end,
+        # after build_ext (which generates the .py file expected in build_py).
+        build_py_cmd = self.sub_commands.pop(0)
+        self.sub_commands.append(build_py_cmd)
+        return build.run(self)
 
 
 class CustomInstall(install):
@@ -638,6 +641,7 @@ def main():
 	cmdclass={
 			'clean': CleanCommand,
 			'uninstall' : UninstallCommand,
+			'build': CustomBuild
 			 }
 	if len(sys.argv) < 2 or ("bdist" not in sys.argv[1] and "debuild" not in sys.argv[0])   :
 			#print("^"*100)
