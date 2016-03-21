@@ -185,8 +185,8 @@ class CustomBuild(build):
 
 class CustomInstall(install):
     def run(self):
-        self.run_command('build_ext')
-        self.do_egg_install()
+        self.skip_build = True
+        return install.run(self)
 
 class CleanCommand(_clean):
 	description = "custom clean command that forcefully removes dist/build directories"
@@ -641,7 +641,8 @@ def main():
 	cmdclass={
 			'clean': CleanCommand,
 			'uninstall' : UninstallCommand,
-			'build': CustomBuild
+			'build': CustomBuild,
+			'install': CustomInstall
 			 }
 	if len(sys.argv) < 2 or ("bdist" not in sys.argv[1] and "debuild" not in sys.argv[0])   :
 			#print("^"*100)
